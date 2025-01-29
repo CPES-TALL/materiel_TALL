@@ -1,0 +1,39 @@
+TAL²
+
+Semaine 2
+TP d'introduction au TAL.
+
+
+Aujourd'hui nous allons décortiquer des données linguistiques.
+
+I. Devenir familier avec les données annotées.
+
+	1. Aller sur les site de Universal Dependencies.
+	2. Choisir 4 langues, et pour chaque langue un corpus, le télécharger depuis GitHub. 
+		2 que vous maitrisez et 2 que vous ne maitrisez pas trop/du tout.
+		Prenez aussi l'ancien français Profiterole.
+	3. Ecrire une fonction pour lire les fichiers au format Conllu.
+	4. Pour chaque fichier train des 4 corpus, faire des statistiques sur les formes (token/type), 
+		les lemmes, les POS et la morphologie (si on veut).
+		Ex: Loi de Zipf sur les formes puis lemmes; les mots les plus fréquents sont-ils équivalents 
+		dans les différentes langues choisies ? Nombres de formes par lemmes, &c.
+		
+		
+II. Rule-based POS-tagging
+
+	Avant de voir tout un tas de méthodes vectorielles et neurales dans les semaines qui viennent, 
+	commençons avec des règles.
+	
+	A chaque étapes, notez les scores que vous obtenez sur le jeu de dev.
+	
+	1. Ecrire 10 règles portant la forme entière des mots pour prédire le POS-tag de ceux-ci.
+	2. Ecrire 10 règles pouvant n'utiliser qu'une partie de la forme.
+		Notez bien l'importance de l'ordre des règles. Si un mot a déjà été étiqueté, doit-il être touché
+		par les règles suivantes ?
+	3. Ecrire 10 règles pouvant utiliser une partie de la forme du mot et des voisins directs.
+	4. On ajoute maintenant la possibilité d'utiliser aussi les POS prédites comme features des règles.
+	5. Faire un système génétique qui essaye de trouver un bon jeu de règles.
+		Critères : pas trop de règles et des règles pas trop compliquées.
+		
+		
+
