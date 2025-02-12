@@ -1,0 +1,56 @@
+TAL²
+
+Semaine 4
+
+				TP: modèles de langue par n-grammes.
+
+
+					 I. Modèle de base
+
+  Avec le corpus français de votre choix, pris par exemple dans la collection gutemberg, segmenté en
+  phrases et tokenisé (avec spacy ou avec nltk), construire un modèle de langue n-grammes paramétré
+  par n, en remplissant un dictionnaire de décomptes d'occurrences de n-grammes (le choix d'une
+  structure de données "defaultdict(Counter)" peut faciliter les choses). Le pseudo-token '<s>' doit
+  être ajouté au début de chaque phrase.
+
+  A partir de ces décomptes (comptages bruts d'occurrences), on peut écrire une fonction de
+  prédiction, qui, étant donné un contexte, renvoie le mot qui a le score le plus élevé (sans passer
+  par les probabilités).  Cette fonction ne peut pas toujours faire de prédiction, puisqu'il peut
+  arriver que (n-1)-gramme pertinent dans le contexte n'ai jamais été rencontré. Dans ce cas, on
+  prédira conventionnellement le token "XXX".
+
+  En prenant des corpus de test de 200 à 500 occurrences, calculer le score d'exactitude du modèle,
+  avec n=2, sur:
+
+     a. un texte tiré du corpus d'«apprentissage»
+     b. un texte du même auteur mais non vu à l'apprentissage
+     c. un texte complètement différent (p.ex. wikipedia)
+
+
+		       II. Repli (backoff), lissage (smoothing), perplexité.
+
+					    II.1. Repli
+
+  Au lieu de répondre XXX quand on n'a jamais rencontré le (n-1)-gramme, on peut mettre en oeuvre
+  une stratégie de repli, qui consiste à considérer comme contexte le (n-2)-gramme, s'il a déjà été
+  rencontré, et ainsi de suite jusqu'au 0-gramme (qu'est-ce que ça veut dire ?). Définir et évaluer
+  le nouveau modèle ainsi obtenu.
+
+					    II.2 Lissage
+
+  Le lissage consiste à redistribuer une partie de la masse de probabilité sur les évènements qu'on
+  n'a jamais rencontrés à l'entraînement. En pratique, cela signifie que l'on doit déterminer le
+  vocabulaire total et utiliser une des techniques de lissage connues pour attribuer une (faible)
+  probabilité à tous les évènement jamais rencontrés. Essayer la méthode de Laplace (+1 avant
+  normalisation). Est-ce qu'un modèle avec lissage peut se dispenser de faire du repli ?
+
+					  II.3 Perplexité.
+
+  Après avoir transformé les comptes d'occurrence en probabilité (après lissage), calculer la
+  perplexité du modèle sur les trois corpus de tests de la question I.
+
+
+Comme dans tout ce qui précède vous avez pris soin de faire de n un paramètre, il doit être possible de comparer les performances avec n=1 et n=3. 
+
+
+
