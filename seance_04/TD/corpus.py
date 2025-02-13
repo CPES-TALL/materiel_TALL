@@ -1,14 +1,17 @@
-from nltk import word_tokenize
-from nltk.tokenize import sent_tokenize
+import nltk
+
+# Si nécessaire, télécharger punkt_tab
+nltk.download('punkt_tab')
+
 
 with open("Candide.txt", "r") as f:
     raw = f.read()
 
-phrases = sent_tokenize(raw)
+phrases = nltk.tokenize.sent_tokenize(raw)
 
 corpus = []
 for p in phrases:
-    tkl = word_tokenize(p)
+    tkl = nltk.word_tokenize(p)
     corpus.append(tkl)
 
 # Corpus : liste de phrases
