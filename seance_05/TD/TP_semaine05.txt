@@ -1,39 +1,39 @@
-TAL²
+TALÂ²
 
 Semaine 5
 
-	    TP: Influence de la taille de la fenêtre sur les embeddings distributionnels
+	    TP: Influence de la taille de la fenÃªtre sur les embeddings distributionnels
 
-   L'objectif du TP est d'observer l'influence de la taille de la fenêtre utilisée lors de
-   l'élaboration d'embeddings statiques par comptage de co-occurrences. L'hypothèse est que les mots
-   qui partagent des contextes étroits (de taille 3 par exemple) sont plutôt des mots qui partagent
-   des propriétés morpho-syntaxiques, alors que des mots qui partagent des contextes plus larges
-   vont sans doute plutôt partager des propriétés sémantiques.
+   L'objectif du TP est d'observer l'influence de la taille de la fenÃªtre utilisÃ©e lors de
+   l'Ã©laboration d'embeddings statiques par comptage de co-occurrences. L'hypothÃ¨se est que les mots
+   qui partagent des contextes Ã©troits (de taille 3 par exemple) sont plutÃ´t des mots qui partagent
+   des propriÃ©tÃ©s morpho-syntaxiques, alors que des mots qui partagent des contextes plus larges
+   vont sans doute plutÃ´t partager des propriÃ©tÃ©s sÃ©mantiques.
 
-   Pour ce faire, on va passer par les étapes suivantes :
+   Pour ce faire, on va passer par les Ã©tapes suivantes :
 
-   - Choix d'un corpus, et d'une liste de 10 mots variés (le choix peut dépendre des corpus choisis)
+   - Choix d'un corpus, et d'une liste de 10 mots variÃ©s (le choix peut dÃ©pendre des corpus choisis)
 
-   - Calcul d'une matrice terme-terme pour une taille de fenêtre donnée
+   - Calcul d'une matrice terme-terme pour une taille de fenÃªtre donnÃ©e
 
    - Pour chacun des mots choisis, extraction des 10 mots les plus similaire (cosine_similarity)
 
-   - Même opération avec une autre taille de fenêtre et comparaison des listes de mots.
+   - MÃªme opÃ©ration avec une autre taille de fenÃªtre et comparaison des listes de mots.
 
 
 
 
-Quelques détails: 
+Quelques dÃ©tails: 
 
 
 
-  1. A partir d'un corpus segmenté et tokenisé, faire en sorte de créer un dictionnaire dont les
-     entrées sont les tokens et qui associe à chaque token la liste des tokens qui apparaissent dans
+  1. A partir d'un corpus segmentÃ© et tokenisÃ©, faire en sorte de crÃ©er un dictionnaire dont les
+     entrÃ©es sont les tokens et qui associe Ã  chaque token la liste des tokens qui apparaissent dans
      un voisinage de 2t tokens autour de lui.
      
-  2. En utilisant CountVectorizer (de scikit-learn), construire une matrice terme-terme à partir du dictionnaire.
+  2. En utilisant CountVectorizer (de scikit-learn), construire une matrice terme-terme Ã  partir du dictionnaire.
 
-  3. En utilisant la fonction cosine_similarity, calculer la matrice de similarité entière
+  3. En utilisant la fonction cosine_similarity, calculer la matrice de similaritÃ© entiÃ¨re
 
   4. Rechercher chacun des mots choisis et trouver les 10 tokens les plus proches. 
 
