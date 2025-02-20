@@ -1,8 +1,11 @@
 # -*-coding: utf-8-*-
 import nltk
-
 # Si nécessaire, télécharger punkt_tab
 #nltk.download('punkt_tab')
+import pandas as pd
+import numpy as np
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
 
 def charge_corpus(filename):
     ''' retourne une liste de phrases
@@ -25,7 +28,17 @@ def cumule_contextes(corpus, taille):
             cumul[tk].extend(contexte)
     return cumul
 
-c = cumule_contextes(charge_corpus("Candide.txt"))
+
+def matrice_terme_terme(cumul): 
+    contextes = [" ".join(contexte) for contexte in cumul.values()]
+    comptages = vectorizer.fit_transform(contextes)
+    matrice= pd.DataFrame(comptages.toarray(),
+                          index = cumul.keys(),
+                          columns = vectorizer.get_feature_names_out())
+    return matrice
 
 
-
+vectorizer = CountVectorizer()
+c = cumule_contextes(charge_corpus("Candide.txt"),2)
+mtt = matrice_terme_terme(c)
+cosine_sim_matrix = cosine_similarity(mtt)
