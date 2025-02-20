@@ -13,4 +13,19 @@ def charge_corpus(filename):
             corpus.append(nltk.word_tokenize(p.lower()))
     return corpus
 
+def cumule_contextes(corpus, taille):
+    cumul = {}
+    for phrase in corpus:
+        for i, tk in enumerate(phrase):
+            d = max(0, i-taille)
+            f = min(i+taille, len(phrase))
+            contexte = phrase[d:i] + phrase[i+1:f]
+            if tk not in cumul.keys():
+                cumul[tk] = contexte
+            cumul[tk].extend(contexte)
+    return cumul
+
+c = cumule_contextes(charge_corpus("Candide.txt"))
+
+
 
