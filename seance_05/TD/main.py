@@ -42,3 +42,18 @@ vectorizer = CountVectorizer()
 c = cumule_contextes(charge_corpus("Candide.txt"),2)
 mtt = matrice_terme_terme(c)
 cosine_sim_matrix = cosine_similarity(mtt)
+
+mot = 'monsieur'
+
+indice = vectorizer.vocabulary_.get(mot)
+
+cible_similarite = cosine_sim_matrix[indice]
+
+dix_voisins_indices = np.argsort(cible_similarite)[::-1][1:11]
+
+# Get the words corresponding to the closest neighbors
+closest_neighbors = [list(vectorizer.vocabulary_.keys())[i] for i in dix_voisins_indices]
+
+# Display the 10 closest neighbors
+print("Les  10 voisins les plus proches de '%s' sont %s"  % (mot, closest_neighbors))
+
