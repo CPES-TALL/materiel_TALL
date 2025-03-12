@@ -1,0 +1,33 @@
+TAL²
+
+TP de representation de texte et de caractères.
+
+# Forgive me for typos, I wrote this in Emacs and did not ispell it.
+
+I. L'Europe
+
+  1. Récupérez les 33 documents "pages" sur github.
+     Ce sont les textes brutes de 33 pages Wikipédia le 12/03/2025, littéralement, en faisant ctrl-a ctrl-c dans un navigateur.
+
+  2. Chargez les 33 pages dans un dictionnaire : lisez chaque document et mettez son contenu dans un dictionnaire dont la clé d'accès est le nom du fichier.
+
+  3. Faites une matrice document-terme avec comme documents les pages et en termes les mots qu'elles contiennent.
+     Il est utile ici de reflechir à des seuillages pour ne pas garder tous les mots, même les plus rares.
+
+  4. Calculer la distance euclidienne et cosinus entre les documents. Lesquels sont les plus proches ?
+
+  5. Faites une réduction de dimension avec une PCA, puis une TSNE, et affichez les.
+
+  6. Normalisez votre matrice et recommencez la visualision et les calcules de distances.
+  
+
+
+II. Les lettres
+
+  1. Faites une matrice char-char où les entrées correspondent à caractères qui apparaissent côte à côte dans la page Europe.
+     Vous pouvez vous restreindre à l'alphabet latin ou l'alphabet latin et les chiffres, et/ou la ponctuation.
+
+  2. Répétez les étapes 4-6 sur ces données. Qu'observez vous.
+
+  3. Pour le plaisir, allez cherchez une page en gallois sur wikipédia, Cymru par exemple et reproduisez ce travail.
+     Les lettres en gallois ont-elles le même agencement qu'en français ?
