@@ -1,32 +1,67 @@
 # -*-coding: utf-8-*-
-import nltk
-# Si nécessaire, télécharger punkt_tab
-#nltk.download('punkt_tab')
 import pandas as pd
 import numpy as np
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
+# ------------------------------------------------------------
+# fonction: charge_corpus()
+# in : nom de fichier (string)
+# out: liste de phrases segmentées et tokenisées par nltk
+#      phrase = liste de tokens (string)
+# import nltk
+# potentiellement installation de punkt_tab
+# ------------------------------------------------------------
+import nltk
+# Si nécessaire, télécharger punkt_tab
+#nltk.download('punkt_tab')
+
 def charge_corpus(filename):
-    ''' retourne une liste de phrases
-    qui sont elles-même des listes de tokens'''
     corpus = []
     with open(filename, "r") as f:
         for p in nltk.tokenize.sent_tokenize(f.read()):
             corpus.append(nltk.word_tokenize(p.lower()))
     return corpus
 
-def cumule_contextes(corpus, taille):
+# ------------------------------------------------------------
+# fonction: cumule_voisins()
+# in : corpus (liste de listes de tokens)
+#      demi-taille de la fenêtre (k) (int)
+# out: dictionnaire {
+#         clés = tokens
+#         valeurs = listes de tous les tokens du voisinage
+#      }
+# ------------------------------------------------------------
+def cumule_voisins(corpus, k):
     cumul = {}
     for phrase in corpus:
-        for i, tk in enumerate(phrase):
-            d = max(0, i-taille)
-            f = min(i+taille, len(phrase))
-            contexte = phrase[d:i] + phrase[i+1:f]
-            if tk not in cumul.keys():
-                cumul[tk] = contexte
-            cumul[tk].extend(contexte)
+        for i, tok in enumerate(phrase):
+            d = max(0, i-k)
+            f = min(i+k, len(phrase))
+            voisins = phrase[d:i] + phrase[i+1:f]
+            if tok not in cumul.keys():
+                cumul[tok] = voisins
+            cumul[tok].extend(voisins)
     return cumul
+
+def stats_cumul(c):
+    print("Vocabulaire : %d types" % len(c))
+    
+
+c = cumule_voisins(charge_corpus("Candide.txt"),2)
+
+stats_cumul(c)
+
+
+
+'''
+
+
+
+
+
+
+
 
 
 def matrice_terme_terme(cumul): 
@@ -57,3 +92,4 @@ closest_neighbors = [list(vectorizer.vocabulary_.keys())[i] for i in dix_voisins
 # Display the 10 closest neighbors
 print("Les  10 voisins les plus proches de '%s' sont %s"  % (mot, closest_neighbors))
 
+'''
