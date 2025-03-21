@@ -1,0 +1,8 @@
+TAL²
+
+TP semaine 8 : perceptron (monocouche)
+
+ - Diapos : https://eric.univ-lyon2.fr/ricco/cours/slides/reseaux_neurones_perceptron.pdf
+
+ - Implémentation d'un perceptron monocouche de classification binaire
+
